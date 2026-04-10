@@ -1,0 +1,89 @@
+import { Link } from "@tanstack/react-router";
+import { useState } from "react";
+
+const navLinks = [
+  { to: "/trabalho" as const, label: "Trabalho" },
+  { to: "/servicos" as const, label: "Serviços" },
+  { to: "/sobre" as const, label: "Sobre" },
+  { to: "/contato" as const, label: "Contato" },
+];
+
+export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background">
+        <div className="container-site flex items-center justify-between h-16">
+          <Link to="/" className="text-foreground text-sm font-semibold tracking-[0.12em] uppercase">
+            Murilo Ortega
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-sm text-foreground transition-opacity hover:opacity-70"
+                activeProps={{ className: "underline underline-offset-4 decoration-1" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-foreground p-2"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Abrir menu"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-[60] bg-background flex flex-col">
+          <div className="container-site flex items-center justify-between h-16">
+            <Link
+              to="/"
+              className="text-foreground text-sm font-semibold tracking-[0.12em] uppercase"
+              onClick={() => setMenuOpen(false)}
+            >
+              Murilo Ortega
+            </Link>
+            <button
+              className="text-foreground p-2"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Fechar menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <line x1="6" y1="6" x2="18" y2="18" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <nav className="flex flex-col items-start container-site mt-16 gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-[32px] text-foreground font-semibold"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+    </>
+  );
+}
