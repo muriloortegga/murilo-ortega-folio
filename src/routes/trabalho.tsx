@@ -14,12 +14,36 @@ export const Route = createFileRoute("/trabalho")({
 });
 
 const projects = [
-  { name: "Brand System — Cliente lifestyle", type: "video" },
-  { name: "Identidade visual — Startup tech", type: "image" },
-  { name: "Site + posicionamento — Consultoria", type: "image" },
-  { name: "Social media — Marca wellness", type: "video" },
-  { name: "Brandbook — Infoprodutor", type: "image" },
-  { name: "Presença digital — Serviço especializado", type: "image" },
+  {
+    name: "Brand System — Cliente lifestyle",
+    type: "video",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80",
+  },
+  {
+    name: "Identidade visual — Startup tech",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+  },
+  {
+    name: "Site + posicionamento — Consultoria",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+  },
+  {
+    name: "Social media — Marca wellness",
+    type: "video",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
+  },
+  {
+    name: "Brandbook — Infoprodutor",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
+  },
+  {
+    name: "Presença digital — Serviço especializado",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
+  },
 ];
 
 const archive = ["Projeto A", "Projeto B", "Projeto C", "Projeto D", "Projeto E"];
@@ -31,14 +55,35 @@ function TrabalhoPage() {
     <div ref={revealRef} className="pt-24">
       <section className="section-spacing">
         <div className="container-site">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* First card: full-width editorial highlight */}
+            <figure className="scroll-reveal project-card group md:col-span-2">
+              <div className="overflow-hidden aspect-[16/7]">
+                <img
+                  src={projects[0].image}
+                  alt={projects[0].name}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption>{projects[0].name}</figcaption>
+            </figure>
+
+            {/* Remaining cards: 2-column grid */}
+            {projects.slice(1).map((project, i) => (
               <figure
                 key={i}
-                className="scroll-reveal project-card"
-                style={{ transitionDelay: `${i * 50}ms` }}
+                className="scroll-reveal project-card group"
+                style={{ transitionDelay: `${(i + 1) * 50}ms` }}
               >
-                <div className="bg-secondary aspect-[4/3]" />
+                <div className="overflow-hidden aspect-[4/3]">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <figcaption>{project.name}</figcaption>
               </figure>
             ))}

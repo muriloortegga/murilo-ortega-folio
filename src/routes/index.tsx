@@ -35,9 +35,21 @@ const services = [
 ];
 
 const projects = [
-  { name: "Brand System — Cliente lifestyle", type: "video" },
-  { name: "Identidade visual — Startup tech", type: "image" },
-  { name: "Site + posicionamento — Consultoria", type: "image" },
+  {
+    name: "Brand System — Cliente lifestyle",
+    type: "video",
+    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80",
+  },
+  {
+    name: "Identidade visual — Startup tech",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+  },
+  {
+    name: "Site + posicionamento — Consultoria",
+    type: "image",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+  },
 ];
 
 function HomePage() {
@@ -50,7 +62,9 @@ function HomePage() {
         <div className="container-site w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h1 className="text-[36px] lg:text-[56px] font-semibold leading-[1.1] text-foreground">
-              Organizo marcas que precisam funcionar como marcas.
+              Organizo marcas que<br />
+              precisam <em className="not-italic text-muted-foreground font-semibold">funcionar</em><br />
+              como marcas.
             </h1>
             <p className="mt-6 text-[18px] text-muted-foreground leading-[1.7] max-w-[540px]">
               Branding, conteúdo e presença digital conectados em um sistema.
@@ -85,10 +99,17 @@ function HomePage() {
             {projects.map((project, i) => (
               <figure
                 key={i}
-                className="scroll-reveal project-card"
+                className="scroll-reveal project-card group"
                 style={{ transitionDelay: `${i * 50}ms` }}
               >
-                <div className="bg-secondary aspect-[4/3]" />
+                <div className="overflow-hidden aspect-[4/3]">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <figcaption>{project.name}</figcaption>
               </figure>
             ))}

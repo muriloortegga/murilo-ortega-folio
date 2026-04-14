@@ -99,6 +99,7 @@
 
 @layer base {
   * {
+    cursor: none !important;
     border-color: var(--color-border);
   }
 
@@ -191,14 +192,29 @@
     transform: translateY(0);
   }
 
-  .project-card {
-    overflow: hidden;
-    border-radius: 0;
-    transition: transform 0.3s ease;
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--color-foreground);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
   }
 
-  .project-card:hover {
-    transform: scale(1.015);
+  .cursor.hovering {
+    width: 32px;
+    height: 32px;
+    opacity: 0.15;
+  }
+
+  .project-card {
+    overflow: hidden;
+    cursor: none;
+    position: relative;
+    border-radius: 0;
   }
 
   .project-card img,
@@ -213,7 +229,15 @@
     font-size: 12px;
     font-style: italic;
     color: var(--color-muted-foreground);
-    margin-top: 8px;
+    margin-top: 12px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .project-card:hover figcaption {
+    border-bottom-color: var(--color-border);
+    color: var(--color-foreground);
   }
 
   .divider {

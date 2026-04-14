@@ -6,8 +6,9 @@ export function Footer() {
       {/* CTA Block */}
       <div className="bg-surface section-spacing">
         <div className="container-site text-center">
-          <h2 className="text-[28px] md:text-[40px] font-semibold text-foreground leading-tight">
-            Pronto para organizar sua marca?
+          <h2 className="text-[28px] md:text-[40px] font-semibold text-foreground leading-tight tracking-tight">
+            Pronto para organizar<br />
+            <span className="text-muted-foreground font-normal">sua marca?</span>
           </h2>
           <div className="mt-8 flex items-center justify-center gap-8">
             <a

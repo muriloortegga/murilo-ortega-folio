@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { to: "/trabalho" as const, label: "Trabalho" },
@@ -10,10 +11,22 @@ const navLinks = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background">
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 bg-background transition-all duration-300",
+          scrolled && "border-b border-border"
+        )}
+      >
         <div className="container-site flex items-center justify-between h-16">
           <Link to="/" className="text-foreground text-sm font-semibold tracking-[0.12em] uppercase">
             Murilo Ortega
@@ -25,8 +38,10 @@ export function Header() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-sm text-foreground transition-opacity hover:opacity-70"
-                activeProps={{ className: "underline underline-offset-4 decoration-1" }}
+                className="text-sm text-muted-foreground transition-all duration-200 hover:text-foreground hover:opacity-100"
+                activeProps={{
+                  className: "text-foreground opacity-100 underline underline-offset-4 decoration-1",
+                }}
               >
                 {link.label}
               </Link>
