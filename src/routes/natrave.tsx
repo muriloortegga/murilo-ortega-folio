@@ -195,7 +195,7 @@ function ProjetoNaTrave() {
       <section className="section-spacing border-t border-border mt-32">
         <div className="container-site flex justify-between items-center">
           <Link to="/" className="btn btn-arrow">← Voltar Home <span className="arrow hidden" /></Link>
-          <Link to="/trabalho" className="btn btn-arrow">Próximo Projeto <span className="arrow" /></Link>
+          <Link to="/symplice" className="btn btn-arrow">Próximo Projeto <span className="arrow" /></Link>
         </div>
       </section>
     </div>

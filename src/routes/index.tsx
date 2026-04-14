@@ -18,16 +18,19 @@ const projects = [
     name: "NaTrave App — O Ecossistema do Futebol Amador",
     category: "Product & Content · 2024",
     image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    to: "/natrave",
   },
   {
     name: "Identidade visual — Startup tech",
     category: "Digital · 2023",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+    to: "/trabalho",
   },
   {
     name: "Site + posicionamento — Consultoria",
     category: "Plataforma · 2023",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    to: "/trabalho",
   },
 ];
 
@@ -123,15 +126,17 @@ function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {projects.map((project, i) => (
-              <figure key={i} className="scroll-reveal project-card group" style={{ transitionDelay: `${i * 100}ms` }}>
-                <div className="media-wrap aspect-[4/3]">
-                  <img src={project.image} alt={project.name} />
-                </div>
-                <figcaption className="mt-6">
-                  <span className="card-label">{project.category}</span>
-                  <span className="font-medium text-lg leading-tight block">{project.name}</span>
-                </figcaption>
-              </figure>
+              <Link key={i} to={project.to} className="group">
+                <figure className="scroll-reveal project-card relative cursor-none" style={{ transitionDelay: `${i * 100}ms` }}>
+                  <div className="media-wrap aspect-[4/3]">
+                    <img src={project.image} alt={project.name} />
+                  </div>
+                  <figcaption className="mt-6">
+                    <span className="card-label">{project.category}</span>
+                    <span className="font-medium text-lg leading-tight block">{project.name}</span>
+                  </figcaption>
+                </figure>
+              </Link>
             ))}
           </div>
         </div>
