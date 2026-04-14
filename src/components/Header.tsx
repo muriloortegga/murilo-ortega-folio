@@ -27,20 +27,20 @@ export function Header() {
           scrolled && "border-b border-border"
         )}
       >
-        <div className="container-site flex items-center justify-between h-16">
-          <Link to="/" className="text-foreground text-sm font-semibold tracking-[0.12em] uppercase">
+        <div className="container-site flex items-center justify-between h-24">
+          <Link to="/" className="text-foreground text-lg font-bold tracking-tight uppercase">
             Murilo Ortega
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-sm text-muted-foreground transition-all duration-200 hover:text-foreground hover:opacity-100"
+                className="text-sm font-regular uppercase tracking-tight text-foreground/60 transition-opacity duration-250 hover:opacity-100"
                 activeProps={{
-                  className: "text-foreground opacity-100 underline underline-offset-4 decoration-1",
+                  className: "text-foreground opacity-100",
                 }}
               >
                 {link.label}
@@ -66,10 +66,10 @@ export function Header() {
       {/* Mobile overlay */}
       {menuOpen && (
         <div className="fixed inset-0 z-[60] bg-background flex flex-col">
-          <div className="container-site flex items-center justify-between h-16">
+          <div className="container-site flex items-center justify-between h-24">
             <Link
               to="/"
-              className="text-foreground text-sm font-semibold tracking-[0.12em] uppercase"
+              className="text-foreground text-lg font-bold tracking-tight uppercase"
               onClick={() => setMenuOpen(false)}
             >
               Murilo Ortega
@@ -85,12 +85,12 @@ export function Header() {
               </svg>
             </button>
           </div>
-          <nav className="flex flex-col items-start container-site mt-16 gap-8">
+          <nav className="flex flex-col items-start container-site mt-12 gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-[32px] text-foreground font-semibold"
+                className="text-[40px] text-foreground font-bold uppercase leading-none tracking-tight"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

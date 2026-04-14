@@ -17,40 +17,50 @@ function ContatoPage() {
   const revealRef = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div ref={revealRef} className="pt-24">
+    <div ref={revealRef} className="pt-32">
       <section className="section-spacing">
-        <div className="container-site max-w-[640px]">
-          <h1 className="scroll-reveal text-[36px] lg:text-[48px] font-semibold text-foreground leading-tight">
-            Vamos conversar.
-          </h1>
-          <p className="scroll-reveal mt-4 text-[18px] text-muted-foreground leading-[1.7]">
-            Se você sente que sua marca está abaixo do nível do seu negócio, é aqui que começa.
-          </p>
-
-          <div className="scroll-reveal mt-10 flex flex-col sm:flex-row gap-6">
-            <a
-              href="mailto:contato@muriloortega.com"
-              className="text-link text-foreground hover:underline underline-offset-4"
-            >
-              Enviar mensagem →
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-link text-foreground hover:underline underline-offset-4"
-            >
-              Ver no LinkedIn →
-            </a>
-          </div>
-
-          <div className="scroll-reveal mt-16">
-            <hr className="divider" />
-            <div className="mt-8">
-              <span className="label-upper">O que posso fazer por você</span>
-              <p className="tags-row mt-3">
-                Estruturação de Marca · Sistema de Conteúdo · Presença Digital
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4 anim-fade-in">
+              <h1>Contato</h1>
+            </div>
+            <div className="lg:col-span-8 anim-fade-in delay-250">
+              <p className="text-2xl lg:text-4xl font-bold uppercase line-height-tight tracking-tight mb-12">
+                Vamos <span className="text-secondary font-medium">conversar.</span>
               </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-border">
+                <div className="space-y-8">
+                  <p className="text-lg lg:text-xl text-foreground font-medium leading-relaxed">
+                    Se você sente que sua marca está abaixo do nível do seu negócio, é aqui que começa.
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    <a href="mailto:contato@muriloortega.com" className="btn btn-arrow">
+                      Enviar mensagem <span className="arrow" />
+                    </a>
+                    <a href="#" className="btn btn-arrow">
+                      Agendar Chamada <span className="arrow" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="space-y-12">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">E-mail</span>
+                    <p className="text-lg font-bold uppercase mt-2">contato@muriloortega.com</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">Social</span>
+                    <div className="flex flex-wrap gap-6 mt-2">
+                       {["LinkedIn", "Instagram", "Upwork"].map(social => (
+                         <a key={social} href="#" className="text-sm font-bold uppercase underline underline-offset-4 decoration-1 hover:text-secondary transition-colors">
+                           {social}
+                         </a>
+                       ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

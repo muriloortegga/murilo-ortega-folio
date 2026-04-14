@@ -41,54 +41,50 @@ function ServicosPage() {
   const revealRef = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div ref={revealRef} className="pt-24">
+    <div ref={revealRef} className="pt-32">
       <section className="section-spacing">
-        <div className="container-site max-w-[800px]">
-          <h1 className="scroll-reveal text-[36px] lg:text-[48px] font-semibold text-foreground leading-tight">
-            Os três sistemas.
-          </h1>
-          <p className="scroll-reveal mt-4 text-[18px] text-muted-foreground leading-[1.7]">
-            Cada um resolve um problema específico. Todos se conectam.
-          </p>
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4 anim-fade-in">
+              <h1>Sistemas</h1>
+            </div>
+            <div className="lg:col-span-8 anim-fade-in delay-250">
+              <p className="text-2xl lg:text-4xl font-bold uppercase line-height-tight tracking-tight">
+                Cada um resolve um problema específico. <br />
+                <span className="text-secondary font-medium">Todos se conectam.</span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="container-site max-w-[800px] pb-16">
+      <section className="container-site pb-32">
         {products.map((p, i) => (
-          <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 50}ms` }}>
-            {i > 0 && <hr className="divider my-12" />}
-            <span className="label-small">{p.num}</span>
-            <h2 className="text-[24px] font-semibold text-foreground mt-2">{p.name}</h2>
-
-            <div className="mt-6 space-y-4">
-              <div>
-                <span className="label-upper">O que resolve</span>
-                <p className="text-[15px] text-surface-foreground leading-[1.7] mt-2">{p.resolve}</p>
+          <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-16 border-t border-border">
+              <div className="lg:col-span-4">
+                <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">{p.num}</span>
+                <h2 className="text-2xl font-bold uppercase mt-4">{p.name}</h2>
               </div>
-              <div>
-                <span className="label-upper">O que envolve</span>
-                <p className="text-[15px] text-surface-foreground leading-[1.7] mt-2">{p.envolve}</p>
-              </div>
-              <div>
-                <span className="label-upper">O que você recebe</span>
-                <p className="text-[15px] text-foreground font-semibold leading-[1.7] mt-2">{p.recebe}</p>
+              <div className="lg:col-span-8 space-y-12">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que resolve</span>
+                  <p className="text-lg lg:text-xl text-foreground font-medium mt-4 max-w-[600px]">{p.resolve}</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-border/50">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que envolve</span>
+                    <p className="text-sm text-secondary leading-relaxed mt-4">{p.envolve}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que você recebe</span>
+                    <p className="text-sm text-foreground font-semibold mt-4">{p.recebe}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ))}
-      </section>
-
-      <section className="section-spacing border-t border-border">
-        <div className="container-site max-w-[800px]">
-          <div className="scroll-reveal">
-            <span className="label-upper">Como funciona o modelo</span>
-            <p className="text-[15px] text-surface-foreground leading-[1.7] mt-4">
-              O ponto de entrada é sempre um projeto fechado, com escopo e prazo definidos.
-              A partir da entrega, abre-se espaço para recorrência e evolução. O ticket cresce
-              com a relação, não com a pressão.
-            </p>
-          </div>
-        </div>
       </section>
     </div>
   );

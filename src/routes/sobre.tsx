@@ -17,44 +17,52 @@ function SobrePage() {
   const revealRef = useScrollReveal<HTMLDivElement>();
 
   return (
-    <div ref={revealRef} className="pt-24">
+    <div ref={revealRef} className="pt-32">
       <section className="section-spacing">
-        <div className="container-site max-w-[640px]">
-          <h1 className="scroll-reveal text-[36px] lg:text-[48px] font-semibold text-foreground leading-tight">
-            Estratégia e execução no mesmo lugar.
-          </h1>
-
-          <div className="scroll-reveal mt-8 space-y-6">
-            <p className="text-[15px] text-surface-foreground leading-[1.7]">
-              Quase 10 anos organizando marcas. Trabalhei de ponta a ponta —
-              do posicionamento ao pixel, do conceito à entrega. Não terceirizo o raciocínio.
-            </p>
-            <p className="text-[15px] text-surface-foreground leading-[1.7]">
-              Opero como um sistema enxuto: controlo a estratégia, aciono
-              colaboradores quando necessário e mantenho a qualidade centralizada.
-              Sem burocracia. Com resultado.
-            </p>
-          </div>
-
-          <p className="scroll-reveal tags-row mt-8">
-            Branding · Comunicação · Design · Conteúdo · Presença Digital
-          </p>
-
-          <div className="scroll-reveal mt-16">
-            <span className="label-upper">Onde estou</span>
-            <div className="mt-4 space-y-2">
-              <p className="text-[15px] text-surface-foreground">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline underline-offset-4">LinkedIn</a>
-                <span className="text-muted-foreground"> — autoridade</span>
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4 anim-fade-in">
+              <h1>Sobre</h1>
+            </div>
+            <div className="lg:col-span-8 anim-fade-in delay-250">
+              <p className="text-2xl lg:text-4xl font-bold uppercase line-height-tight tracking-tight mb-12">
+                Estratégia e execução <br />
+                <span className="text-secondary font-medium">no mesmo lugar.</span>
               </p>
-              <p className="text-[15px] text-surface-foreground">
-                <a href="https://upwork.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline underline-offset-4">Upwork</a>
-                <span className="text-muted-foreground"> — projetos internacionais</span>
-              </p>
-              <p className="text-[15px] text-surface-foreground">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline underline-offset-4">Instagram</a>
-                <span className="text-muted-foreground"> — processo e rotina</span>
-              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-border">
+                <div className="space-y-6">
+                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">A Trajetória</span>
+                  <p className="text-sm text-secondary leading-relaxed">
+                    Quase 10 anos organizando marcas. Trabalhei de ponta a ponta —
+                    do posicionamento ao pixel, do conceito à entrega. Não terceirizo o raciocínio.
+                  </p>
+                </div>
+                <div className="space-y-6">
+                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O Modelo</span>
+                  <p className="text-sm text-secondary leading-relaxed">
+                    Opero como um sistema enxuto: controlo a estratégia, aciono
+                    colaboradores quando necessário e mantenho a qualidade centralizada.
+                    Sem burocracia. Com resultado.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-20 pt-12 border-t border-border space-y-8">
+                <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">Conecte-se</span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                  {[
+                    { name: "LinkedIn", detail: "Autoridade", url: "#" },
+                    { name: "Upwork", detail: "Internacional", url: "#" },
+                    { name: "Instagram", detail: "Processo", url: "#" }
+                  ].map((link) => (
+                    <a key={link.name} href={link.url} className="group block">
+                      <span className="text-xs font-mono uppercase text-secondary block mb-1">{link.detail}</span>
+                      <span className="text-lg font-bold uppercase group-hover:text-secondary transition-colors underline underline-offset-4 decoration-1">{link.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
