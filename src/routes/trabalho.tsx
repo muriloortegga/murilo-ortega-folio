@@ -23,8 +23,14 @@ const projects = [
   {
     name: "NaTrave App — O Ecossistema do Futebol Amador",
     category: "Product & Content · 2024",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1543351611-58f69d7c1781?q=80&w=800&auto=format&fit=crop",
     to: "/natrave",
+  },
+  {
+    name: "Solid + — Fintech Identity & Systems",
+    category: "Fintech · 2024",
+    image: "/solid-full.png",
+    to: "/solid",
   },
   {
     name: "Site + posicionamento — Consultoria",
@@ -42,12 +48,6 @@ const projects = [
     name: "Brandbook — Infoprodutor",
     category: "Branding · 2023",
     image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
-    to: "/trabalho",
-  },
-  {
-    name: "Presença digital — Serviço especializado",
-    category: "Digital · 2023",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
     to: "/trabalho",
   },
 ];
