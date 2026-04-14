@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Maximize2, Trophy, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,15 @@ function ProjetoNaTrave() {
   const revealRef = useScrollReveal<HTMLDivElement>();
   const [activeTab, setActiveTab] = useState<"marca" | "social">("marca");
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  useEffect(() => {
+    if (isFullScreen) {
+      document.body.classList.add("has-fullscreen");
+    } else {
+      document.body.classList.remove("has-fullscreen");
+    }
+    return () => document.body.classList.remove("has-fullscreen");
+  }, [isFullScreen]);
 
   return (
     <div ref={revealRef} className="pt-32">
@@ -181,12 +190,16 @@ function ProjetoNaTrave() {
             </button>
           </div>
           
-          <div className="max-w-[1200px] mx-auto px-4 pb-32 pt-8">
             <img 
               src={activeTab === "marca" ? "/natrave-marca.png" : "/natrave-social.png"} 
               alt="NaTrave Full Presentation" 
               className="w-full h-auto shadow-2xl"
             />
+            {/* Scroll Hint Overlay */}
+            <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[102] pointer-events-none flex flex-col items-center gap-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-foreground/40">Explore os detalhes</span>
+              <div className="hint-scroll h-8 w-px bg-foreground/20" />
+            </div>
           </div>
         </div>
       )}
