@@ -15,7 +15,7 @@ export const Route = createFileRoute("/trabalho")({
 
 const projects = [
   {
-    name: "Brand System — Cliente lifestyle",
+    name: "Symplice — Identidade de Marca para Startup",
     category: "Branding · 2024",
     image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80",
   },

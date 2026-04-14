@@ -74,22 +74,24 @@ function HomePage() {
             </div>
           </div>
           <div className="lg:col-span-5 block mt-12 lg:mt-0 anim-fade-in delay-250">
-            <figure className="project-card group relative">
-              <div className="media-wrap aspect-[3/4]">
-                <img
-                  src="/hero-brandding.jpg"
-                  alt="Packaging project showcase"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              </div>
-              <figcaption className="mt-6 flex items-center justify-between">
-                <div>
-                  <span className="card-label">Branding · 2024</span>
-                  <span className="font-medium text-lg">Embalagem — Consumo Premium</span>
+            <Link to="/symplice" className="block group">
+              <figure className="project-card relative cursor-none">
+                <div className="media-wrap aspect-[3/4]">
+                  <img
+                    src="/hero-brandding.jpg"
+                    alt="Symplice project showcase"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
                 </div>
-              </figcaption>
-            </figure>
+                <figcaption className="mt-6 flex items-center justify-between">
+                  <div>
+                    <span className="card-label">Branding · 2024</span>
+                    <span className="font-medium text-lg uppercase leading-tight block">Symplice — Identidade de<br />Marca para Startup</span>
+                  </div>
+                </figcaption>
+              </figure>
+            </Link>
           </div>
         </div>
       </section>
