@@ -74,10 +74,21 @@ function HomePage() {
               Ver trabalho →
             </Link>
           </div>
-          <div className="hidden lg:flex items-center justify-end">
-            <span className="text-[200px] font-semibold text-border select-none leading-none">
-              MO
-            </span>
+          <div className="hidden lg:block">
+            <figure className="project-card group relative">
+              <div className="overflow-hidden aspect-[3/4]">
+                <img
+                  src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?w=900&q=85"
+                  alt="Projeto de embalagem — exibição de trabalho"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="eager"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-center justify-between">
+                <span>Embalagem — Marca consumo premium</span>
+                <span className="text-[10px] tracking-widest uppercase text-muted-foreground opacity-50">2024</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
