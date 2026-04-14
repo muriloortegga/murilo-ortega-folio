@@ -30,5 +30,5 @@ export function Cursor() {
     };
   }, []);
 
-  return <div ref={cursorRef} className="cursor" />;
+  return <div ref={cursorRef} className="cursor hidden md:block" />;
 }

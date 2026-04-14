@@ -347,9 +347,13 @@
   }
   
   body.has-fullscreen .site-header,
-  body.has-fullscreen .project-card,
-  body.has-fullscreen .container-site:not(.fixed) {
-    pointer-events: none;
+  body.has-fullscreen main > *:not([data-fullscreen]),
+  body.has-fullscreen .container-site:not([data-fullscreen] *) {
+    pointer-events: none !important;
+  }
+  
+  [data-fullscreen] {
+    pointer-events: auto !important;
   }
   
   body.has-fullscreen .site-header {

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallax } from "@/hooks/use-parallax";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,6 +26,7 @@ const projects = [
     category: "Fintech · 2024",
     image: "/solid-full.png",
     to: "/solid",
+    position: "top",
   },
   {
     name: "Site + posicionamento — Consultoria",
@@ -54,32 +56,37 @@ const services = [
 
 function HomePage() {
   const revealRef = useScrollReveal<HTMLDivElement>();
+  const heroParallax = useParallax(0.15);
+  const secondaryParallax = useParallax(0.08);
 
   return (
     <div ref={revealRef}>
       {/* Hero */}
-      <section className="min-h-screen flex items-center pt-24 pb-12">
+      <section className="min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
         <div className="container-site w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
-            <h1 className="anim-fade-in">
+          <div className="lg:col-span-7" style={{ transform: `translateY(${heroParallax}px)` }}>
+            <h1 className="anim-fade-in anim-translate-y">
               Organizo marcas que<br />
-              precisam <span className="text-secondary font-medium">funcionar</span><br />
+              precisam <span className="text-secondary font-medium italic">funcionar</span><br />
               como marcas.
             </h1>
-            <p className="mt-10 text-lg lg:text-xl text-secondary leading-relaxed max-w-[600px] anim-fade-in delay-250">
+            <p className="mt-10 text-lg lg:text-xl text-secondary leading-relaxed max-w-[600px] anim-fade-in delay-250 anim-translate-y">
               Branding, conteúdo e presença digital conectados em um sistema.
               Para empresas que já faturam, mas ainda comunicam abaixo do nível que entregam.
             </p>
-            <div className="mt-12 anim-fade-in delay-500">
-              <Link to="/trabalho" className="btn btn-arrow">
-                Ver trabalho <span className="arrow" />
+            <div className="mt-12 anim-fade-in delay-500 anim-translate-y">
+              <Link to="/trabalho" className="btn btn-arrow group">
+                Ver trabalho <span className="arrow group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-5 block mt-12 lg:mt-0 anim-fade-in delay-250">
+          <div 
+            className="lg:col-span-5 block mt-12 lg:mt-0 anim-fade-in delay-250"
+            style={{ transform: `translateY(${-secondaryParallax}px)` }}
+          >
             <Link to="/symplice" className="block group">
-              <figure className="project-card relative cursor-none">
-                <div className="media-wrap aspect-[3/4]">
+              <figure className="project-card relative cursor-none overflow-hidden">
+                <div className="media-wrap aspect-[3/4] group-hover:scale-105 transition-transform duration-700">
                   <img
                     src="/hero-brandding.jpg"
                     alt="Symplice project showcase"
@@ -100,7 +107,7 @@ function HomePage() {
       </section>
 
       {/* Positioning */}
-      <section className="section-spacing border-t border-border">
+      <section className="section-spacing border-t border-border bg-foreground/[0.01]">
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-4">
@@ -109,7 +116,7 @@ function HomePage() {
               </span>
             </div>
             <div className="lg:col-span-8">
-              <p className="scroll-reveal text-2xl lg:text-4xl font-bold line-height-tight tracking-tight uppercase">
+              <p className="scroll-reveal text-2xl lg:text-4xl font-bold line-height-tight tracking-tight uppercase anim-translate-y">
                 O problema não é falta de ação. É falta de estrutura. Empresas que cresceram pela qualidade do serviço, mas cuja marca ainda não sustenta o nível que entregam.
               </p>
             </div>
@@ -128,12 +135,17 @@ function HomePage() {
             {projects.map((project, i) => (
               <Link key={i} to={project.to} className="group">
                 <figure className="scroll-reveal project-card relative cursor-none" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <div className="media-wrap aspect-[4/3]">
-                    <img src={project.image} alt={project.name} />
+                  <div className="media-wrap aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.name} 
+                      className="group-hover:scale-110 transition-transform duration-1000"
+                      style={{ objectPosition: project.position || "center" }}
+                    />
                   </div>
                   <figcaption className="mt-6">
                     <span className="card-label">{project.category}</span>
-                    <span className="font-medium text-lg leading-tight block">{project.name}</span>
+                    <span className="font-medium text-lg leading-tight block group-hover:translate-x-2 transition-transform duration-500">{project.name}</span>
                   </figcaption>
                 </figure>
               </Link>
@@ -143,7 +155,7 @@ function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="section-spacing border-t border-border">
+      <section className="section-spacing border-t border-border bg-foreground/[0.01]">
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
@@ -152,7 +164,7 @@ function HomePage() {
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-12">
               {services.map((s, i) => (
                 <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary mb-4 block">{s.num}</span>
+                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary mb-4 block underline decoration-secondary/30 underline-offset-8">{s.num}</span>
                   <h4 className="text-xl font-bold uppercase mb-4">{s.title}</h4>
                   <p className="text-sm text-secondary leading-relaxed">{s.body}</p>
                 </div>

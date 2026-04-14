@@ -129,7 +129,10 @@ function ProjetoSymplice() {
 
       {/* Full Screen Overlay */}
       {isFullScreen && (
-        <div className="fixed inset-0 z-[100] bg-background overflow-y-auto no-scrollbar anim-fade-in">
+        <div 
+          className="fixed inset-0 z-[100] bg-background overflow-y-auto no-scrollbar anim-fade-in"
+          data-fullscreen
+        >
           <div className="sticky top-0 right-0 left-0 h-24 flex items-center justify-between container-site z-[101] bg-background/50 backdrop-blur-sm border-b border-border/10">
             <span className="text-xs font-mono uppercase tracking-widest">Symplice — Brand ID Concept</span>
             <button 
