@@ -15,9 +15,9 @@ export const Route = createFileRoute("/")({
 
 const projects = [
   {
-    name: "Brand System — Cliente lifestyle",
-    category: "Branding · 2024",
-    image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80",
+    name: "NaTrave App — O Ecossistema do Futebol Amador",
+    category: "Product & Content · 2024",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
   },
   {
     name: "Identidade visual — Startup tech",

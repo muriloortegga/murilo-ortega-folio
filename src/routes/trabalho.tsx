@@ -20,9 +20,9 @@ const projects = [
     image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80",
   },
   {
-    name: "Identidade visual — Startup tech",
-    category: "Digital · 2023",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+    name: "NaTrave App — O Ecossistema do Futebol Amador",
+    category: "Product & Content · 2024",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80",
   },
   {
     name: "Site + posicionamento — Consultoria",
