@@ -78,7 +78,7 @@ function HomePage() {
             <figure className="project-card group relative">
               <div className="overflow-hidden aspect-[3/4] lg:aspect-[3/4]">
                 <img
-                  src="/hero-branding.jpg"
+                  src="/hero-brandding.jpg"
                   alt="Projeto de embalagem — exibição de trabalho"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="eager"
