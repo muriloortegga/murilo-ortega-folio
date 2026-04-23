@@ -193,12 +193,12 @@ function ProjetoNaTrave() {
             </button>
           </div>
           
-          <div>
             <img 
               src={activeTab === "marca" ? "/natrave-marca.png" : "/natrave-social.png"} 
               alt="NaTrave Full Presentation" 
               className="w-full h-auto shadow-2xl"
             />
+            {/* Scroll Hint Overlay */}
             <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[102] pointer-events-none flex flex-col items-center gap-3">
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-foreground/40">Explore os detalhes</span>
               <div className="hint-scroll h-8 w-px bg-foreground/20" />

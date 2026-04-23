@@ -10,27 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrabalhoRouteImport } from './routes/trabalho'
-import { Route as SympliceRouteImport } from './routes/symplice'
-import { Route as SolidRouteImport } from './routes/solid'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ServicosRouteImport } from './routes/servicos'
-import { Route as NatraveRouteImport } from './routes/natrave'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TrabalhoRoute = TrabalhoRouteImport.update({
   id: '/trabalho',
   path: '/trabalho',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SympliceRoute = SympliceRouteImport.update({
-  id: '/symplice',
-  path: '/symplice',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SolidRoute = SolidRouteImport.update({
-  id: '/solid',
-  path: '/solid',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SobreRoute = SobreRouteImport.update({
@@ -41,11 +28,6 @@ const SobreRoute = SobreRouteImport.update({
 const ServicosRoute = ServicosRouteImport.update({
   id: '/servicos',
   path: '/servicos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NatraveRoute = NatraveRouteImport.update({
-  id: '/natrave',
-  path: '/natrave',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
@@ -62,75 +44,38 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/natrave': typeof NatraveRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/solid': typeof SolidRoute
-  '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/natrave': typeof NatraveRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/solid': typeof SolidRoute
-  '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contato': typeof ContatoRoute
-  '/natrave': typeof NatraveRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
-  '/solid': typeof SolidRoute
-  '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/contato'
-    | '/natrave'
-    | '/servicos'
-    | '/sobre'
-    | '/solid'
-    | '/symplice'
-    | '/trabalho'
+  fullPaths: '/' | '/contato' | '/servicos' | '/sobre' | '/trabalho'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/contato'
-    | '/natrave'
-    | '/servicos'
-    | '/sobre'
-    | '/solid'
-    | '/symplice'
-    | '/trabalho'
-  id:
-    | '__root__'
-    | '/'
-    | '/contato'
-    | '/natrave'
-    | '/servicos'
-    | '/sobre'
-    | '/solid'
-    | '/symplice'
-    | '/trabalho'
+  to: '/' | '/contato' | '/servicos' | '/sobre' | '/trabalho'
+  id: '__root__' | '/' | '/contato' | '/servicos' | '/sobre' | '/trabalho'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContatoRoute: typeof ContatoRoute
-  NatraveRoute: typeof NatraveRoute
   ServicosRoute: typeof ServicosRoute
   SobreRoute: typeof SobreRoute
-  SolidRoute: typeof SolidRoute
-  SympliceRoute: typeof SympliceRoute
   TrabalhoRoute: typeof TrabalhoRoute
 }
 
@@ -141,20 +86,6 @@ declare module '@tanstack/react-router' {
       path: '/trabalho'
       fullPath: '/trabalho'
       preLoaderRoute: typeof TrabalhoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/symplice': {
-      id: '/symplice'
-      path: '/symplice'
-      fullPath: '/symplice'
-      preLoaderRoute: typeof SympliceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/solid': {
-      id: '/solid'
-      path: '/solid'
-      fullPath: '/solid'
-      preLoaderRoute: typeof SolidRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sobre': {
@@ -169,13 +100,6 @@ declare module '@tanstack/react-router' {
       path: '/servicos'
       fullPath: '/servicos'
       preLoaderRoute: typeof ServicosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/natrave': {
-      id: '/natrave'
-      path: '/natrave'
-      fullPath: '/natrave'
-      preLoaderRoute: typeof NatraveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -198,11 +122,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContatoRoute: ContatoRoute,
-  NatraveRoute: NatraveRoute,
   ServicosRoute: ServicosRoute,
   SobreRoute: SobreRoute,
-  SolidRoute: SolidRoute,
-  SympliceRoute: SympliceRoute,
   TrabalhoRoute: TrabalhoRoute,
 }
 export const routeTree = rootRouteImport
