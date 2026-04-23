@@ -17,6 +17,7 @@ import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as NatraveRouteImport } from './routes/natrave'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MarcaSlugRouteImport } from './routes/marca.$slug'
 
 const TrabalhoRoute = TrabalhoRouteImport.update({
   id: '/trabalho',
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarcaSlugRoute = MarcaSlugRouteImport.update({
+  id: '/marca/$slug',
+  path: '/marca/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/solid': typeof SolidRoute
   '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
+  '/marca/$slug': typeof MarcaSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/solid': typeof SolidRoute
   '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
+  '/marca/$slug': typeof MarcaSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/solid': typeof SolidRoute
   '/symplice': typeof SympliceRoute
   '/trabalho': typeof TrabalhoRoute
+  '/marca/$slug': typeof MarcaSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/solid'
     | '/symplice'
     | '/trabalho'
+    | '/marca/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/solid'
     | '/symplice'
     | '/trabalho'
+    | '/marca/$slug'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/solid'
     | '/symplice'
     | '/trabalho'
+    | '/marca/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   SolidRoute: typeof SolidRoute
   SympliceRoute: typeof SympliceRoute
   TrabalhoRoute: typeof TrabalhoRoute
+  MarcaSlugRoute: typeof MarcaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/marca/$slug': {
+      id: '/marca/$slug'
+      path: '/marca/$slug'
+      fullPath: '/marca/$slug'
+      preLoaderRoute: typeof MarcaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolidRoute: SolidRoute,
   SympliceRoute: SympliceRoute,
   TrabalhoRoute: TrabalhoRoute,
+  MarcaSlugRoute: MarcaSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
