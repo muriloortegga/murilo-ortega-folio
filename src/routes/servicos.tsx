@@ -1,68 +1,39 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Route = createFileRoute("/servicos")({
   head: () => ({
     meta: [
       { title: "Serviços — Murilo Ortega" },
-      { name: "description", content: "Sistemas para organizar sua marca: branding, conteúdo, presença digital, mídia impressa, OOH e marketing de influência." },
+      { name: "description", content: "Três sistemas para organizar sua marca: estruturação, conteúdo e presença digital." },
       { property: "og:title", content: "Serviços — Murilo Ortega" },
-      { property: "og:description", content: "Sistemas para organizar sua marca." },
+      { property: "og:description", content: "Três sistemas para organizar sua marca." },
     ],
   }),
   component: ServicosPage,
 });
 
-export type Service = {
-  num: string;
-  slug: string;
-  name: string;
-  short: string;
-  image: string;
-};
-
-export const services: Service[] = [
+const products = [
   {
     num: "01",
-    slug: "estruturacao-de-marca",
     name: "Estruturação de Marca",
-    short: "Posicionamento, identidade e brandbook que dão coerência ao que já existe.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b8?w=1200&q=80",
+    resolve: "Marcas que cresceram sem base. Sem posicionamento definido, sem identidade coerente, sem material de referência. Tudo existe, mas nada se conecta.",
+    envolve: "Diagnóstico de marca, definição de posicionamento, construção de identidade visual (logo, tipografia, paleta, sistema visual), direção de naming quando necessário, e documentação completa em brandbook.",
+    recebe: "Um brandbook completo e uma marca que funciona como sistema.",
   },
   {
     num: "02",
-    slug: "sistema-de-conteudo",
     name: "Sistema de Conteúdo",
-    short: "Linha editorial e produção previsível por canal.",
-    image: "https://images.unsplash.com/photo-1493612276216-ee3925520721?w=1200&q=80",
+    resolve: "Marcas que publicam sem estratégia. Conteúdo existe, mas não segue uma linha, não tem frequência previsível e não reforça o posicionamento.",
+    envolve: "Definição de linha editorial, planejamento de conteúdo por canal, criação de diretrizes de tom e voz, direção criativa para primeiros ciclos de produção.",
+    recebe: "Uma linha editorial documentada e um sistema de produção que se sustenta.",
   },
   {
     num: "03",
-    slug: "presenca-digital",
     name: "Presença Digital",
-    short: "Site que organiza a comunicação e facilita a conversão.",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80",
-  },
-  {
-    num: "04",
-    slug: "midia-impressa",
-    name: "Mídia Impressa",
-    short: "Editorial, embalagem e material institucional com direção própria.",
-    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&q=80",
-  },
-  {
-    num: "05",
-    slug: "midia-ooh",
-    name: "Mídia OOH",
-    short: "Out-of-home pensado como peça de marca, não como anúncio.",
-    image: "https://images.unsplash.com/photo-1542223616-740d5dff7f56?w=1200&q=80",
-  },
-  {
-    num: "06",
-    slug: "marketing-de-influencia",
-    name: "Marketing de Influência",
-    short: "Curadoria e direção de criadores alinhados ao posicionamento.",
-    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80",
+    resolve: "Marcas que não são bem apresentadas online. O site não comunica valor, a jornada do visitante é confusa, e a conversão depende de sorte.",
+    envolve: "Estratégia de conteúdo para web, wireframe e direção de UX/UI, copywriting orientado a conversão, implementação com foco em performance e SEO básico.",
+    recebe: "Um site que organiza a comunicação e facilita a conversão.",
   },
 ];
 
@@ -87,45 +58,33 @@ function ServicosPage() {
         </div>
       </section>
 
-      {/* Grid de serviços com paralaxe via CSS */}
       <section className="container-site pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-          {services.map((s, i) => (
-            <Link
-              key={s.slug}
-              to="/servico/$slug"
-              params={{ slug: s.slug }}
-              className="service-card group scroll-reveal"
-              style={{ transitionDelay: `${i * 80}ms` }}
-            >
-              <div className="service-card-media">
-                <div
-                  className="service-card-image"
-                  style={{ backgroundImage: `url(${s.image})` }}
-                  aria-hidden="true"
-                />
-                <div className="service-card-overlay" aria-hidden="true" />
+        {products.map((p, i) => (
+          <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-16 border-t border-border">
+              <div className="lg:col-span-4">
+                <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">{p.num}</span>
+                <h2 className="text-2xl font-bold uppercase mt-4">{p.name}</h2>
               </div>
-
-              <div className="service-card-content">
-                <div className="flex items-start justify-between mb-12">
-                  <span className="text-[10px] font-mono uppercase tracking-tight text-background/60">
-                    {s.num}
-                  </span>
-                  <span className="text-[10px] font-mono uppercase tracking-tight text-background/60">
-                    Ver detalhes →
-                  </span>
+              <div className="lg:col-span-8 space-y-12">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que resolve</span>
+                  <p className="text-lg lg:text-xl text-foreground font-medium mt-4 max-w-[600px]">{p.resolve}</p>
                 </div>
-                <h3 className="text-2xl lg:text-3xl font-bold uppercase leading-tight tracking-tight text-background">
-                  {s.name}
-                </h3>
-                <p className="mt-6 text-sm text-background/70 leading-relaxed max-w-[420px]">
-                  {s.short}
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-border/50">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que envolve</span>
+                    <p className="text-sm text-secondary leading-relaxed mt-4">{p.envolve}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">O que você recebe</span>
+                    <p className="text-sm text-foreground font-semibold mt-4">{p.recebe}</p>
+                  </div>
+                </div>
               </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </section>
     </div>
   );
