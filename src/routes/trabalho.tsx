@@ -13,7 +13,7 @@ export const Route = createFileRoute("/trabalho")({
   component: TrabalhoPage,
 });
 
-  const projects = [
+const projects = [
   {
     name: "Symplice — Identidade de Marca para Startup",
     category: "Branding · 2024",
@@ -31,7 +31,6 @@ export const Route = createFileRoute("/trabalho")({
     category: "Fintech · 2024",
     image: "/solid-full.png",
     to: "/solid",
-    position: "top",
   },
   {
     name: "Site + posicionamento — Consultoria",
@@ -75,7 +74,6 @@ function TrabalhoPage() {
                     src={projects[0].image}
                     alt={projects[0].name}
                     className="w-full h-full object-cover"
-                    style={{ objectPosition: projects[0].position || "center" }}
                     loading="lazy"
                   />
                 </div>
@@ -91,12 +89,7 @@ function TrabalhoPage() {
               <Link key={i + 1} to={project.to} className="group">
                 <figure className="scroll-reveal project-card relative cursor-none" style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
                   <div className="media-wrap aspect-[4/3]">
-                    <img 
-                      src={project.image} 
-                      alt={project.name} 
-                      style={{ objectPosition: project.position || "center" }}
-                      loading="lazy" 
-                    />
+                    <img src={project.image} alt={project.name} loading="lazy" />
                   </div>
                   <figcaption className="mt-8">
                     <span className="card-label">{project.category}</span>
