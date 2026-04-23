@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { LogoMarquee } from "@/components/LogoMarquee";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,6 +99,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Logo marquee */}
+      <LogoMarquee />
 
       {/* Positioning */}
       <section className="section-spacing border-t border-border">
