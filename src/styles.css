@@ -45,15 +45,6 @@
   50% { opacity: 0.5; transform: translateY(10px); }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-}
-
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -368,5 +359,264 @@
 
   .hint-scroll {
     animation: var(--animate-pulse-subtle);
+  }
+
+  /* ── Logo Marquee ─────────────────────────────────── */
+  .marquee-outer {
+    overflow: hidden;
+    position: relative;
+    padding: 1.25rem 0;
+    background: var(--background);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  .marquee-outer:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .marquee-item {
+    flex-shrink: 0;
+    display: block;
+    text-decoration: none;
+  }
+
+  .marquee-logo-wrap {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    transition: border-color var(--bd-time-transition-250) var(--ease-out);
+  }
+
+  .marquee-item:hover .marquee-logo-wrap {
+    border-color: var(--foreground);
+  }
+
+  .marquee-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition:
+      filter var(--bd-time-transition-250) var(--ease-out),
+      opacity var(--bd-time-transition-250) var(--ease-out),
+      transform var(--bd-time-transition-650) var(--ease-out);
+  }
+
+  .marquee-item:hover .marquee-logo-img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  .marquee-logo-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--foreground);
+    display: flex;
+    align-items: flex-end;
+    padding: 0.4rem 0.6rem;
+    opacity: 0;
+    transition: opacity var(--bd-time-transition-250) var(--ease-out);
+  }
+
+  .marquee-item:hover .marquee-logo-overlay {
+    opacity: 0.85;
+  }
+
+  .marquee-logo-name {
+    font-size: 0.6rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--background);
+    font-weight: 500;
+  }
+
+  /* ── Category Cards (Dropdown) ────────────────────── */
+  .category-card-trigger {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: opacity var(--bd-time-transition-250) var(--ease-out);
+  }
+
+  .category-card-trigger:hover {
+    opacity: 0.7;
+  }
+
+  .category-card-title {
+    font-size: clamp(1.6rem, 2.8vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--foreground);
+    margin: 0;
+  }
+
+  .category-card-chevron {
+    color: var(--secondary);
+    transition: transform var(--bd-time-transition-250) var(--ease-out);
+    display: flex;
+    align-items: center;
+  }
+
+  .category-card-chevron.open {
+    transform: rotate(180deg);
+  }
+
+  .category-panel {
+    overflow: hidden;
+    transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Service Cards (Image + Blur + Parallax) ──────── */
+  .service-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    aspect-ratio: 3/4;
+    background: var(--foreground);
+  }
+
+  .service-card-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .service-card-img {
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    display: block;
+    transform: translateY(0);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .service-card:hover .service-card-img {
+    transform: translateY(-5%) scale(1.06);
+  }
+
+  .service-card-blur {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(20, 20, 20, 0.95) 35%,
+      rgba(20, 20, 20, 0.5) 65%,
+      rgba(20, 20, 20, 0.15) 100%
+    );
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.4s ease;
+  }
+
+  .service-card:hover .service-card-blur {
+    backdrop-filter: blur(2px);
+  }
+
+  .service-card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: rgba(255,255,255,0.4);
+    transition: color var(--bd-time-transition-250) var(--ease-out),
+                gap var(--bd-time-transition-250) var(--ease-out);
+  }
+
+  .service-card:hover .service-card-cta {
+    color: rgba(255,255,255,0.9);
+    gap: 1.25rem;
+  }
+
+  .service-card-cta .arrow {
+    display: inline-block;
+    width: 1.5rem;
+    height: 0.08rem;
+    background: currentColor;
+    position: relative;
+    transition: transform var(--bd-time-transition-250) var(--ease-out);
+  }
+
+  .service-card:hover .service-card-cta .arrow {
+    transform: translateX(4px);
+  }
+
+  .service-card-cta .arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-right: 0.08rem solid currentColor;
+    border-top: 0.08rem solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  /* ── Brand Page — Design Markers ──────────────────── */
+  .brand-dm-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.25rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--bd-time-transition-250) var(--ease-out);
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  }
+
+  .project-card:hover .brand-dm-overlay {
+    opacity: 1;
+  }
+
+  .brand-dm-label {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.8);
   }
 }
