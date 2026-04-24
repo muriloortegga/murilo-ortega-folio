@@ -35,7 +35,7 @@ const projects = [
   },
   {
     name: "Site + posicionamento — Consultoria",
-    category: "Id Visual",
+    category: "Plataforma · 2023",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
     to: "/trabalho",
   },
@@ -47,7 +47,7 @@ const projects = [
   },
   {
     name: "Brandbook — Infoprodutor",
-    category: "Id Visual",
+    category: "Branding · 2023",
     image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80",
     to: "/trabalho",
   },
@@ -59,50 +59,44 @@ const archive = ["Vogue Design", "Natural Pure", "Tech Flow", "Zen Garden", "Stu
 
 function TrabalhoPage() {
   const revealRef = useScrollReveal<HTMLDivElement>();
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
-  const filteredProjects = activeCategory 
-    ? projects.filter(p => p.category === activeCategory)
-    : projects;
 
   return (
     <div ref={revealRef} className="pt-32">
       <section className="section-spacing">
         <div className="container-site">
           <div className="mb-20">
-            <h1 className="uppercase line-height-tight tracking-tight">Conheça meu<br /><span className="text-secondary font-medium">Trabalho</span></h1>
+            <h1 className="uppercase line-height-tight tracking-tight">Trabalho<br /><span className="text-secondary font-medium">Selecionado</span></h1>
           </div>
-          
-          <div className="mb-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {filterCategories.map(cat => (
-              <button 
-                key={cat}
-                onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
-                className={`py-8 px-6 text-left border transition-all duration-300 ${
-                  activeCategory === cat ? 'bg-foreground text-background border-foreground' : 'bg-transparent text-foreground border-border hover:bg-border/20'
-                }`}
-              >
-                <span className="font-bold uppercase block">{cat}</span>
-                <span className="text-xs uppercase mt-2 opacity-60">Ver projetos</span>
-              </button>
-            ))}
-          </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-            {filteredProjects.length === 0 && (
-              <div className="md:col-span-2 py-12 text-center text-secondary uppercase font-medium">
-                Nenhum projeto encontrado nesta categoria no momento.
-              </div>
-            )}
-            {filteredProjects.map((project, i) => (
-              <Link key={i} to={project.to} className={`group ${i === 0 && !activeCategory ? 'md:col-span-2' : ''}`}>
-                <figure className="scroll-reveal project-card relative cursor-none" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <div className={`media-wrap ${i === 0 && !activeCategory ? 'aspect-[21/9]' : 'aspect-[4/3]'}`}>
-                    <img src={project.image} alt={project.name} className="w-full h-full object-cover" loading="lazy" />
+            {/* First card: full-width editorial highlight */}
+            <Link key={0} to={projects[0].to} className="group md:col-span-2">
+              <figure className="scroll-reveal project-card relative cursor-none">
+                <div className="media-wrap aspect-[21/9]">
+                  <img
+                    src={projects[0].image}
+                    alt={projects[0].name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="mt-8">
+                  <span className="card-label">{projects[0].category}</span>
+                  <span className="font-bold text-2xl lg:text-3xl uppercase leading-tight block">{projects[0].name}</span>
+                </figcaption>
+              </figure>
+            </Link>
+
+            {/* Remaining cards: 2-column grid */}
+            {projects.slice(1).map((project, i) => (
+              <Link key={i + 1} to={project.to} className="group">
+                <figure className="scroll-reveal project-card relative cursor-none" style={{ transitionDelay: `${(i + 1) * 100}ms` }}>
+                  <div className="media-wrap aspect-[4/3]">
+                    <img src={project.image} alt={project.name} loading="lazy" />
                   </div>
                   <figcaption className="mt-8">
                     <span className="card-label">{project.category}</span>
-                    <span className={`font-bold uppercase leading-tight block ${i === 0 && !activeCategory ? 'text-2xl lg:text-3xl' : 'text-xl lg:text-2xl'}`}>{project.name}</span>
+                    <span className="font-bold text-xl lg:text-2xl uppercase leading-tight block">{project.name}</span>
                   </figcaption>
                 </figure>
               </Link>
