@@ -38,18 +38,56 @@ const services = [
   {
     num: "01",
     title: "Estruturação de Marca",
-    body: "Para marcas que cresceram sem base. Posicionamento, identidade visual e brandbook que dão coerência ao que já existe.",
+    body: "Para marcas que cresceram sem base. Posicionamento, identidade visual e brandbook que dão coerência.",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/estruturacao-de-marca"
   },
   {
     num: "02",
     title: "Sistema de Conteúdo",
     body: "Para marcas que existem mas não têm consistência. Uma linha editorial que transforma presença digital em algo previsível e alinhado.",
+    image: "https://images.unsplash.com/photo-1542744094-24638ea0b343?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/sistema-de-conteudo"
   },
   {
     num: "03",
     title: "Presença Digital",
-    body: "Para marcas que não são bem apresentadas online. Site que organiza a comunicação, melhora percepção de valor e facilita a conversão.",
+    body: "Para marcas que não são bem apresentadas online. Site que organiza a comunicação e melhora percepção de valor.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/presenca-digital"
   },
+  {
+    num: "04",
+    title: "Mídia Impressa",
+    body: "Design e produção gráfica de alto padrão. Cartões, embalagens e editoriais com acabamentos premium.",
+    image: "https://images.unsplash.com/photo-1562654501-a0ccc0eb3fb1?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/midia-impressa"
+  },
+  {
+    num: "05",
+    title: "Mídia OOH",
+    body: "Comunicação visual para espaços urbanos. Outdoors, painéis e mídias de grande formato que dominam a atenção.",
+    image: "https://images.unsplash.com/photo-1542138549-354972e7371e?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/midia-ooh"
+  },
+  {
+    num: "06",
+    title: "Marketing de Influência",
+    body: "Estratégias de conexão entre sua marca e vozes que amplificam a sua mensagem de forma autêntica e focada.",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+    to: "/servico/marketing-de-influencia"
+  }
+];
+
+const brands = [
+  { name: "Symplice", to: "/brand/symplice" },
+  { name: "NaTrave App", to: "/brand/natrave" },
+  { name: "Solid +", to: "/brand/solid" },
+  { name: "Vogue Design", to: "/brand/vogue-design" },
+  { name: "Natural Pure", to: "/brand/natural-pure" },
+  { name: "Tech Flow", to: "/brand/tech-flow" },
+  { name: "Zen Garden", to: "/brand/zen-garden" },
+  { name: "Studio Max", to: "/brand/studio-max" },
 ];
 
 function HomePage() {
@@ -95,6 +133,28 @@ function HomePage() {
                 </figcaption>
               </figure>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Marquee Section */}
+      <section className="py-8 border-t border-border overflow-hidden bg-foreground text-background">
+        <div className="relative flex whitespace-nowrap">
+          <div className="animate-marquee flex gap-16 px-8 items-center">
+            {brands.map((brand, i) => (
+              <Link key={`a-${i}`} to={brand.to} className="group flex items-center gap-16 transition-opacity hover:opacity-50">
+                <span className="text-3xl lg:text-5xl font-bold uppercase tracking-tight">{brand.name}</span>
+                <span className="text-xl">✦</span>
+              </Link>
+            ))}
+          </div>
+          <div className="animate-marquee flex gap-16 px-8 items-center absolute top-0 left-full">
+            {brands.map((brand, i) => (
+              <Link key={`b-${i}`} to={brand.to} className="group flex items-center gap-16 transition-opacity hover:opacity-50">
+                <span className="text-3xl lg:text-5xl font-bold uppercase tracking-tight">{brand.name}</span>
+                <span className="text-xl">✦</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -149,13 +209,33 @@ function HomePage() {
             <div className="lg:col-span-4">
               <span className="text-[10px] font-mono uppercase tracking-tight text-secondary">Serviços</span>
             </div>
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
               {services.map((s, i) => (
-                <div key={i} className="scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-                  <span className="text-[10px] font-mono uppercase tracking-tight text-secondary mb-4 block">{s.num}</span>
-                  <h4 className="text-xl font-bold uppercase mb-4">{s.title}</h4>
-                  <p className="text-sm text-secondary leading-relaxed">{s.body}</p>
-                </div>
+                <Link key={i} to={s.to} className="group block scroll-reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-md cursor-none">
+                    {/* Image with scaling and parallax shift */}
+                    <img 
+                      src={s.image} 
+                      alt={s.title} 
+                      className="w-full h-[110%] object-cover absolute top-0 left-0 transition-transform duration-1000 ease-out group-hover:scale-105 group-hover:-translate-y-4"
+                    />
+                    
+                    {/* Gradient overlay + blur */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-500 group-hover:backdrop-blur-[2px]" />
+                    
+                    {/* Text content */}
+                    <div className="absolute bottom-0 left-0 p-8 w-full z-10 flex flex-col justify-end h-full">
+                      <span className="text-[10px] font-mono uppercase tracking-tight text-white/70 mb-4 block transform transition-transform duration-500 group-hover:-translate-y-2">{s.num}</span>
+                      <h4 className="text-2xl font-bold uppercase mb-4 text-white transform transition-transform duration-500 group-hover:-translate-y-2">{s.title}</h4>
+                      
+                      <div className="overflow-hidden">
+                        <p className="text-sm text-white/90 leading-relaxed opacity-0 transform translate-y-8 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                          {s.body}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
